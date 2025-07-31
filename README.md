@@ -1,83 +1,55 @@
-Data scientists can upload and retrieve models via AWS Lambda and (optionally) API Gateway, while compliance teams have read-only access with full audit logging via AWS CloudTrail.
+Project Overview
 
-Built using Terraform for infrastructure-as-code and Python for Lambda automation, this project demonstrates best practices in cloud security, role-based access, DevOps, and ML platform design.
+Data scientists can securely upload and retrieve ML models via AWS Lambda (and optionally API Gateway), while compliance teams have read-only access with full audit logging powered by AWS CloudTrail.
+
+Built with Terraform (Infrastructure as Code) and Python automation, this project demonstrates best practices in cloud security, role-based access control, DevOps automation, and ML platform governance.
+
+⸻
 
 💡 Key Features
-	•	🔐 Secure, versioned model storage using Amazon S3
-	•	🛡️ Access control with IAM roles and policies
-	•	⚙️ Upload/download via serverless Lambda functions
-	•	📊 Full traceability using CloudTrail logs
-	•	🔄 Infrastructure managed via Terraform
-	•	🧑‍💻 Designed for data scientists and compliance teams
+	•	🔐 Secure, versioned model storage on Amazon S3
+	•	🛡️ Role-based access control using IAM policies and roles
+	•	⚙️ Serverless upload/download via AWS Lambda functions
+	•	📊 Full traceability with AWS CloudTrail audit logs
+	•	🔄 Infrastructure managed and versioned with Terraform
+	•	🧑‍💻 Designed for easy use by Data Scientists and Compliance teams
+
+⸻
 
 🚀 Technologies & Concepts
 	•	AWS (S3, Lambda, IAM, CloudTrail, API Gateway)
 	•	Terraform (IaC)
-	•	Python (Automation)
+	•	Python (Lambda automation)
 	•	Cloud Security & Access Management
 	•	DevOps & Infrastructure Automation
 	•	ML Model Lifecycle Management
 	•	Compliance & Governance
 
+⸻
+
 📌 Use Cases
-	•	Internal ML model registry for deployment pipelines
-	•	Secure, auditable ML storage for regulated environments
-	•	Infrastructure template for model governance in production ML system
+	•	Internal ML model registry supporting deployment pipelines
+	•	Secure, auditable model storage for regulated or compliance-focused environments
+	•	Infrastructure template for ML model governance in production systems
 
-Project Flow Explanation
+⸻
 
-1. User Access & Authentication
-Data Science and Compliance team members attempt to access the service (via web portal or API).
-Users are authenticated using AWS IAM roles or AWS Cognito (for web/mobile access).
-Authorization ensures users have appropriate permissions based on their team and role.
-
-2. Model Artifact Operations
-Upload Artifact:
-A user (typically from the Data Science team) uploads a model artifact (e.g., a trained ML model file).
-The request goes through an API Gateway (REST or GraphQL endpoint).
-API Gateway triggers serverless backend logic (via AWS Lambda or containerized service).
-Retrieve Artifact:
-A user (Data Science or Compliance) requests to download/view an artifact.
-The request again passes through API Gateway and backend logic for validation and processing.
-
-4. Secure Storage
-Artifacts are stored in Amazon S3 buckets with:
-Encryption at rest (SSE-S3 or SSE-KMS).
-Bucket policies to enforce least-privilege access.
-Versioning (optional) for auditability and rollback.
-
-5. Access Control & Auditing
-Every upload, download, or access attempt is logged:
-AWS CloudTrail records API activity.
-S3 Access Logs record object-level operations.
-Compliance team can review logs for audit and governance.
-
-6. Monitoring & Alerts
-Amazon CloudWatch monitors service health, usage patterns, and abnormal activities.
-Alerts can be set up for unauthorized access attempts or failures.
-
-7. Data Delivery
-After successful authorization and logging, the requested artifact is delivered (downloaded or made available through a presigned URL).
-Data Science and Compliance teams can use the service securely, knowing all access is tracked.
+🛠️ Project Flow
+	1.	User Access & Authentication
+	•	Users (Data Scientists and Compliance) authenticate via IAM roles or AWS Cognito.
+	•	Permissions are enforced based on team roles.
+	2.	Model Artifact Operations
+	•	Uploads trigger Lambda functions via API Gateway.
+	•	Downloads are securely authorized and served, optionally via presigned URLs.
+	3.	Secure Storage
+	•	Models stored in encrypted, versioned S3 buckets with strict bucket policies.
+	4.	Access Control & Auditing
+	•	All access logged via CloudTrail and S3 Access Logs.
+	•	Compliance team reviews logs for governance.
+	5.	Monitoring & Alerts
+	•	CloudWatch monitors service health and security events.
+	•	Alerts can be configured for suspicious activity.
+	6.	Data Delivery
+	•	Authorized artifacts delivered securely to users.
 
 
-secure-model-artifact-store/
-│
-├── README.md                      # Project overview and setup guide
-├── .gitignore                     # Git ignored files (e.g., .zip, __pycache__)
-├── requirements.txt               # Python dependencies for Lambda 
-│
-├── infra/                         # Terraform configuration for AWS setup
-│   ├── main.tf                    # Main Terraform config (S3, IAM)
-│   ├── variables.tf               #  Input variables
-│   ├── outputs.tf                 # Outputs like bucket name
-│   └── provider.tf                # AWS provider and backend setup
-│
-├── lambda/                        # Lambda function source code
-│   ├── upload_model.py            # Upload model to S3
-│   ├── download_model.py          # Download model from S3
-│   
-└── docs/                          # Optional: Diagrams, architecture, etc.
-    └── architecture.png           # High-level architecture diagram
-
- 
