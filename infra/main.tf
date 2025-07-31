@@ -147,6 +147,16 @@ resource "aws_iam_role_policy_attachment" "attach_lambda_s3_policy" {
 }
 
 #----------------------------
+#  include the CloudTrail config as a module from the relative path ../cloudtrail.
+#----------------------------
+module "cloudtrail" {
+  source = "../cloudtrail"
+}
+
+
+
+
+#----------------------------
 #  Outputs for Reference
 #----------------------------
 output "bucket_name" {
