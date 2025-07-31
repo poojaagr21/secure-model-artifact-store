@@ -60,4 +60,24 @@ Alerts can be set up for unauthorized access attempts or failures.
 After successful authorization and logging, the requested artifact is delivered (downloaded or made available through a presigned URL).
 Data Science and Compliance teams can use the service securely, knowing all access is tracked.
 
+
+secure-model-artifact-store/
+│
+├── README.md                      # Project overview and setup guide
+├── .gitignore                     # Git ignored files (e.g., .zip, __pycache__)
+├── requirements.txt               # Python dependencies for Lambda 
+│
+├── infra/                         # Terraform configuration for AWS setup
+│   ├── main.tf                    # Main Terraform config (S3, IAM)
+│   ├── variables.tf               #  Input variables
+│   ├── outputs.tf                 # Outputs like bucket name
+│   └── provider.tf                # AWS provider and backend setup
+│
+├── lambda/                        # Lambda function source code
+│   ├── upload_model.py            # Upload model to S3
+│   ├── download_model.py          # Download model from S3
+│   
+└── docs/                          # Optional: Diagrams, architecture, etc.
+    └── architecture.png           # High-level architecture diagram
+
  
