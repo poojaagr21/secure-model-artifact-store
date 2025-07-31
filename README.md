@@ -74,3 +74,34 @@ secure-model-artifact-store/
 └── docs/                        # Optional documentation and diagrams
     └── architecture.png         # Architecture overview diagram
 
+
+    Deployment Instructions
+
+1. Deploy Core Infrastructure & CloudTrail Together
+
+CloudTrail is included as a Terraform module inside the infra folder. To deploy all AWS resources (S3 bucket, IAM roles, Lambda roles, CloudTrail, etc.):
+
+cd infra
+terraform init
+terraform apply
+
+2. Deploy CloudTrail Separately (Optional)
+
+If you want to deploy CloudTrail independently for modular management:
+cd ../cloudtrail
+terraform init
+terraform apply
+
+3. Deploy Lambda Functions
+
+The Lambda function code is in the lambda/ folder:
+	•	Package each Lambda function:
+
+ cd lambda
+zip upload_model.zip upload_model.py
+zip download_model.zip download_model.py
+
+4. Verify & Monitor
+	•	CloudTrail logs all AWS API calls in the designated S3 bucket and streams logs to CloudWatch.
+	•	we can Use CloudWatch dashboards and alarms for monitoring Lambda and S3 usage.
+	•	Compliance teams can audit access through CloudTrail logs.
