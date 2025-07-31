@@ -105,3 +105,13 @@ zip download_model.zip download_model.py
 	•	CloudTrail logs all AWS API calls in the designated S3 bucket and streams logs to CloudWatch.
 	•	we can Use CloudWatch dashboards and alarms for monitoring Lambda and S3 usage.
 	•	Compliance teams can audit access through CloudTrail logs.
+
+
+
+
+NEXT STEPS:
+
+ to deploy the Terraform infrastructure (S3 buckets, IAM roles, CloudTrail, Lambda functions).
+	•	set up and maintain monitoring and alerting using CloudWatch and CloudTrail to detect issues like failures or unauthorized access.
+	•	manage scaling, backups, and disaster recovery for the S3 storage and Lambda services.
+	
