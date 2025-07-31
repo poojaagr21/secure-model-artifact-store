@@ -6,7 +6,7 @@ provider "aws" {
 
 # Create an S3 bucket for storing model artifacts
 resource "aws_s3_bucket" "model_artifact_bucket" {
-  bucket = "secure-model-artifact-store-poojaagr"
+  bucket = "secure-model-artifact-store-pooja123"
 
   # Enable versioning to keep track of all changes to objects
   versioning {
