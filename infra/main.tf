@@ -147,6 +147,36 @@ resource "aws_iam_role_policy_attachment" "attach_lambda_s3_policy" {
 }
 
 #----------------------------
+#  Deploy Lambda using Terraform (need to zip the Python files manually or with a script before applying Terraform).
+#----------------------------
+
+resource "aws_lambda_function" "upload_model" {
+  filename         = "${path.module}/../lambda/upload_model.zip"
+  function_name    = "upload_model"
+  role             = aws_iam_role.lambda_exec_role.arn
+  handler          = "upload_model.lambda_handler"
+  runtime          = "python3.9"
+  source_code_hash = filebase64sha256("${path.module}/../lambda/upload_model.zip")
+
+  environment {
+    variables = jsondecode(file("${path.module}/../lambda/upload_model.json"))
+  }
+}
+
+resource "aws_lambda_function" "download_model" {
+  filename         = "${path.module}/../lambda/download_model.zip"
+  function_name    = "download_model"
+  role             = aws_iam_role.lambda_exec_role.arn
+  handler          = "download_model.lambda_handler"
+  runtime          = "python3.9"
+  source_code_hash = filebase64sha256("${path.module}/../lambda/download_model.zip")
+
+  environment {
+    variables = jsondecode(file("${path.module}/../lambda/download_model.json"))
+  }
+}
+
+#----------------------------
 #  include the CloudTrail config as a module from the relative path ../cloudtrail.
 #----------------------------
 module "cloudtrail" {
