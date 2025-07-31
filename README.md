@@ -24,17 +24,14 @@ Built using Terraform for infrastructure-as-code and Python for Lambda automatio
 	•	Secure, auditable ML storage for regulated environments
 	•	Infrastructure template for model governance in production ML system
 
-
-
- Project Flow Explanation
+Project Flow Explanation
 
 1. User Access & Authentication
-
 Data Science and Compliance team members attempt to access the service (via web portal or API).
 Users are authenticated using AWS IAM roles or AWS Cognito (for web/mobile access).
 Authorization ensures users have appropriate permissions based on their team and role.
-2. Model Artifact Operations
 
+2. Model Artifact Operations
 Upload Artifact:
 A user (typically from the Data Science team) uploads a model artifact (e.g., a trained ML model file).
 The request goes through an API Gateway (REST or GraphQL endpoint).
@@ -42,23 +39,25 @@ API Gateway triggers serverless backend logic (via AWS Lambda or containerized s
 Retrieve Artifact:
 A user (Data Science or Compliance) requests to download/view an artifact.
 The request again passes through API Gateway and backend logic for validation and processing.
-3. Secure Storage
 
+4. Secure Storage
 Artifacts are stored in Amazon S3 buckets with:
 Encryption at rest (SSE-S3 or SSE-KMS).
 Bucket policies to enforce least-privilege access.
 Versioning (optional) for auditability and rollback.
-4. Access Control & Auditing
 
+5. Access Control & Auditing
 Every upload, download, or access attempt is logged:
 AWS CloudTrail records API activity.
 S3 Access Logs record object-level operations.
 Compliance team can review logs for audit and governance.
-5. Monitoring & Alerts
 
+6. Monitoring & Alerts
 Amazon CloudWatch monitors service health, usage patterns, and abnormal activities.
 Alerts can be set up for unauthorized access attempts or failures.
-6. Data Delivery
 
+7. Data Delivery
 After successful authorization and logging, the requested artifact is delivered (downloaded or made available through a presigned URL).
 Data Science and Compliance teams can use the service securely, knowing all access is tracked.
+
+ 
