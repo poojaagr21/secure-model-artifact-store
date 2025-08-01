@@ -112,9 +112,15 @@ zip download_model.zip download_model.py
 
 
 
-NEXT STEPS:
 
+•	S3 Backup & Disaster Recovery
+Added s3.tf to configure versioning and lifecycle rules for the model artifact S3 bucket, enabling automated backups and cost-effective disaster recovery.
+	•	Auto-scaling for Lambda
+Configured concurrent execution limits for Lambda functions to support dynamic scaling based on incoming requests and protect against overload scenarios.
+	•	CloudWatch Alarm for Lambda Failures
+Set up a CloudWatch Alarm that triggers alerts on Lambda invocation failures, enhancing observability and enabling quick troubleshooting.
+
+
+Next Steps:
  to deploy the Terraform infrastructure (S3 buckets, IAM roles, CloudTrail, Lambda functions).
-	•	set up and maintain monitoring and alerting using CloudWatch and CloudTrail to detect issues like failures or unauthorized access.
-	•	manage scaling, backups, and disaster recovery for the S3 storage and Lambda services.
 	
