@@ -1,4 +1,3 @@
-
 resource "aws_lambda_function" "upload_model" {
   function_name = "upload_model"
   handler       = "upload_model.lambda_handler"  # your Python handler function
