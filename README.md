@@ -54,26 +54,29 @@ Built with Terraform (Infrastructure as Code) and Python automation, this projec
 secure-model-artifact-store/
 
 
+secure-model-artifact-store/
 │
-├── README.md                      # Project overview and setup guide
-├── .gitignore                    # Ignore files (e.g., .zip, __pycache__)
-├── requirements.txt              # Python dependencies for Lambda 
+├── README.md
+├── .gitignore
+├── requirements.txt
 │
-├── infra/                       # Core Terraform configurations
-│   └── main.tf                  # S3, IAM policies, Lambda roles, etc.
+├── infra/
+│   ├── main.tf              # Root Terraform entry
+│   ├── s3.tf                # S3 config with versioning + lifecycle
+│   ├── lambda.tf            # Lambda infra config
+│   ├── iam.tf               # IAM roles/policies for Lambda & S3
+│   ├── cloudwatch.tf        # (Optional) Monitoring and alerts
+│   └── cloudtrail/
+│       └── main.tf          # CloudTrail audit logging setup
 │
-├── cloudtrail/                  # Separate Terraform for CloudTrail audit logging
-│   └── main.tf                  # CloudTrail setup: logs bucket, IAM role, CloudWatch integration
+├── lambda/
+│   ├── upload_model.py
+│   ├── download_model.py
+│   ├── upload_event.json
+│   └── download_event.json
 │
-├── lambda/                      # Lambda source code and configs
-│   ├── upload_model.py          # Upload model function
-│   ├── upload_model.json        # Upload Lambda deployment/config JSON
-│   ├── download_model.py        # Download model function
-│   ├── download_model.json      # Download Lambda deployment/config JSON
-│
-└── docs/                        # Optional documentation and diagrams
-    └── architecture.png         # Architecture overview diagram
-
+└── docs/
+    └── architecture.png     # Optional: Add architecture diagram
 
     Deployment Instructions
 
