@@ -1,3 +1,11 @@
+
+
+#Both use the same zipped file function.zip which includes both Python files.
+#handler points to each file’s handler function.
+#reserved_concurrent_executions = 5 limits concurrent executions for each Lambda.
+#source_code_hash forces updates if the zip changes.resource "aws_lambda_function" "upload_model" {
+  
+
 resource "aws_lambda_function" "upload_model" {
   function_name = "upload_model"
   handler       = "upload_model.lambda_handler"
