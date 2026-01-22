@@ -65,10 +65,10 @@ The architecture is designed to support future enhancements such as:
 - Agent-based automated remediation for common failure scenarios
 - CI/CD pipelines for automated model
 
-## Outcome
+Outcome
 This project demonstrates how cloud infrastructure for ML workloads can be operated reliably at scale using SRE best practices. It reflects real-world responsibilities of a Cloud SRE, including infrastructure automation, monitoring, security enforcement, and incident 
 
-## Technologies Used
+Technologies Used
 - AWS (EC2, S3, IAM, CloudWatch, Auto Scaling, VPC)
 - Terraform
 - Linux
